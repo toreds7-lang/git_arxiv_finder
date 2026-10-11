@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scout · GitHub, arXiv, YouTube &amp; Blogs</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/library.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">◆</span>
+      <span class="name">Scout</span>
+      <span class="tagline">find the best GitHub repos, arXiv papers, YouTube videos &amp; blog posts · driven by Claude Code</span>
+    </div>
+    <div class="health" id="health"></div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="github" aria-selected="true">GitHub <span class="dot" hidden></span></button>
+    <button role="tab" data-tab="arxiv" aria-selected="false">arXiv <span class="dot" hidden></span></button>
+    <button role="tab" data-tab="youtube" aria-selected="false">YouTube <span class="dot" hidden></span></button>
+    <button role="tab" data-tab="blog" aria-selected="false">Blogs <span class="dot" hidden></span></button>
+    <button role="tab" data-tab="library" aria-selected="false" class="lib-tab">📚 Library <span class="dot" hidden></span></button>
+  </nav>
+
+  <main id="panels"></main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <template id="panel-tpl">
+    <section class="panel" role="tabpanel">
+      <form class="search card">
+        <textarea name="query" rows="2" required></textarea>
+        <div class="prior" hidden></div>
+        <div class="controls">
+          <label>Results <select name="count"></select></label>
+          <label>Recency <select name="since"></select></label>
+          <label>Model <select name="model"></select></label>
+          <span class="grow"></span>
+          <button type="button" class="btn cancel" hidden>Cancel</button>
+          <button type="submit" class="btn primary">Search</button>
+        </div>
+        <div class="examples"></div>
+        <div class="notice" hidden></div>
+      </form>
+
+      <div class="history-row">
+        <label>History <select class="history"><option value="">— past searches —</option></select></label>
+      </div>
+
+      <div class="workspace">
+        <aside class="timeline-col card">
+          <div class="col-head">
+            <h2>Timeline</h2>
+            <span class="status-pill" data-status="idle">idle</span>
+          </div>
+          <div class="stats"></div>
+          <ol class="timeline"><li class="empty">Run a search to watch Claude work here, step by step.</li></ol>
+        </aside>
+
+        <section class="results-col">
+          <div class="results-head" hidden>
+            <div class="summary card"></div>
+            <div class="toolbar">
+              <span class="count"></span>
+              <span class="grow"></span>
+              <label>Sort <select class="sort"></select></label>
+              <button type="button" class="btn copy-md">Copy as Markdown</button>
+            </div>
+          </div>
+          <div class="results"></div>
+        </section>
+      </div>
+    </section>
+  </template>
+
+  <script src="/static/app.js"></script>
+  <script src="/static/library.js"></script>
+</body>
+</html>
